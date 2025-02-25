@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Portfolio</h1>
+    <div class="portfolio-grid">
+        <div class="card ardenta">
+            <div class="card-inner"></div>
+            <div class="arrow-icon"></div>
+            <div class="card-content">
+              <a href="arden.html">
+                <h2 class="card-title">Ardenta</h2>
+              </a>
+            </div>
+        </div>
+        <div class="card anisa">
+           <a href="anisa.html">
+            <div class="card-inner"></div>
+            <div class="arrow-icon"></div>
+              <div class="card-content">
+                <h2 class="card-title">Anisa</h2>
+           </a>
+            </div>
+        </div>
+        <div class="card cello">
+            <div class="card-inner"></div>
+            <div class="arrow-icon"></div>
+          <a href="Ipul.html">
+            <div class="card-content">
+                <h2 class="card-title">Ipul</h2>
+            </div>
+          </a>
+        </div>
+        <div class="card darleen">
+            <a href="darleen.html">
+             <div class="card-inner"></div>
+             <div class="arrow-icon"></div>
+               <div class="card-content">
+                 <h2 class="card-title">DARLEEN</h2>
+            </a>
+             </div>
+         </a>
+        </div>
+        <div class="card jibril">
+            <div class="card-inner"></div>
+            <div class="arrow-icon"></div>
+           <a href="jibril.html">
+            <div class="card-content">
+                <h2 class="card-title">JIBRIL</h2>
+            </div>
+           </a>
+        </div>
+        <div class="card kalin">
+            <a href="kalin.html">
+             <div class="card-inner"></div>
+             <div class="arrow-icon"></div>
+               <div class="card-content">
+                 <h2 class="card-title">KALIN</h2>
+            </a>
+             </div>
+            </a>
+        </div>
+    </div>
+
+    <audio id="background-audio" loop>
+      <source src="sound.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+      const audio = document.getElementById('background-audio');
+
+      
+
+      setInterval(() => {
+        sessionStorage.setItem('audioTime', audio.currentTime);
+      }, 500);
+
+      if (!sessionStorage.getItem('alertShown')) {
+        window.onload = function() {
+          const overlay = document.createElement('div');
+          overlay.className = 'custom-alert-overlay';
+
+          const alertBox = document.createElement('div');
+          alertBox.className = 'custom-alert';
+
+          const icon = document.createElement('div');
+          icon.className = 'device-icon';
+          icon.innerHTML = '💻';
+
+          const heading = document.createElement('h3');
+          heading.textContent = 'Untuk Pengalaman Terbaik';
+
+          const message = document.createElement('p');
+          message.textContent = 'Kami sarankan untuk membuka portfolio ini di laptop/PC agar tampilan lebih bagus dan optimal.';
+
+          const button = document.createElement('button');
+          button.textContent = 'Saya Mengerti';
+          button.onclick = function() {
+              document.body.removeChild(overlay);
+              sessionStorage.setItem('alertShown', 'true');
+              setTimeout(() => {
+                  const welcomeOverlay = document.createElement('div');
+                  welcomeOverlay.className = 'custom-alert-overlay';
+
+                  const welcomeAlert = document.createElement('div');
+                  welcomeAlert.className = 'custom-alert welcome-alert';
+
+                  const welcomeMessage = document.createElement('h3');
+                  welcomeMessage.textContent = 'Selamat membaca portofolio kami sambil mendengarkan lagu yang kami sediakan';
+
+                  const closeButton = document.createElement('button');
+                  closeButton.textContent = 'Tutup';
+                  closeButton.onclick = function() {
+                      document.body.removeChild(welcomeOverlay);
+                  };
+
+                  welcomeAlert.appendChild(welcomeMessage);
+                  welcomeAlert.appendChild(closeButton);
+                  welcomeOverlay.appendChild(welcomeAlert);
+
+                  document.body.appendChild(welcomeOverlay);
+              }, 500);
+          };
+
+          alertBox.appendChild(icon);
+          alertBox.appendChild(heading);
+          alertBox.appendChild(message);
+          alertBox.appendChild(button);
+          overlay.appendChild(alertBox);
+
+          document.body.appendChild(overlay);
+        };
+      }
+
+      document.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+        }
+      });
+    </script>
+</body>
+</html>
